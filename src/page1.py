@@ -1,46 +1,40 @@
 import streamlit as st
+import openai
+import requests
 
-introduction = """
-Brief details about OpenAI DALL-E:
-
-### What is OpenAI DALL-E?
-
-DALL-E is a 12-billion parameter version of GPT-3 trained to generate images from text 
-descriptions, using a dataset of text–image pairs². It can create original, realistic 
-images and art from a text description¹. 
-
-### What can OpenAI DALL-E do?
-
-DALL-E has a diverse set of capabilities, including creating anthropomorphized versions 
-of animals and objects, combining unrelated concepts in plausible ways, rendering text, 
-and applying transformations to existing images². DALL-E 2 can make realistic edits to 
-existing images from a natural language caption³.
-
-### How does OpenAI DALL-E work?
-DALL-E works by using a dataset of text–image pairs to learn how to generate images 
-from textual descriptions². It uses a 12-billion parameter version of GPT-3².
-
-### How can I use OpenAI DALL-E?
-DALL-E is available in beta and can be used by signing up on their website⁵. 
-
-```
-Example usage:
-Input: A cat made of sushi
-Output: An image of a cat made out of sushi
-```
-
-Source: Conversation with Bing, 4/29/2023
-
-- (1) DALL·E: Creating images from text - OpenAI. https://openai.com/research/dall-e.
-- (2) DALL·E 2 - OpenAI. https://openai.com/product/dall-e-2.
-- (3) DALL·E - OpenAI. https://labs.openai.com/.
-- (4) DALL·E now available in beta - OpenAI. https://openai.com/blog/dall-e-now-available-in-beta/.
-- (5) DALL·E 2 - openai.com. https://openai.com/product/dall-e-2?ref=promptsreport.com.
-- (6) OpenAI API. https://platform.openai.com/docs/models/dall-e.
-
-"""
-
-# Define the pages
 def page1():
-    st.title("OpenAI DALL·E")
-    st.markdown(introduction)
+    st.title("OpenAI DALL·E Image Generation")
+    st.info("#### NOTE: You can download an image by right-clicking on it and selecting 'Save image as'.")
+
+    # Create a form to input the prompt, image size, and number of images
+    with st.form(key="image_form"):
+        prompt = st.text_input("Enter text prompt for image generation", placeholder="photorealistic image of Richard Feynman")
+        size = st.selectbox("Select image size", ("256x256", "512x512", "1024x1024"))
+        num_images = st.selectbox("Select number of images to generate", (1, 2, 3, 4))
+        submit_button = st.form_submit_button("Generate")
+
+    if submit_button and prompt:
+        # Initialize OpenAI client (ensure your credentials are configured)
+        client = openai.OpenAI()
+        
+        try:
+            response = client.images.generate(
+                model="dall-e-2",  # or "dall-e-3" for higher quality
+                prompt=prompt,
+                n=num_images,
+                size=size
+            )
+            
+            # Display each generated image
+            for i, image in enumerate(response.data):
+                image_url = image.url
+                if image_url is not None:
+                    st.image(image_url, caption=f"Generated Image {i+1}", use_container_width=True)
+                else:
+                    st.error(f"No URL returned for image {i+1}.")
+                
+        except Exception as e:
+            st.error(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    page1()

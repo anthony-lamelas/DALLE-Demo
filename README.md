@@ -1,10 +1,15 @@
 # DALL-E-DEMO
 
-## The demo can be seen in the following playlist -
+## Run bash init_setup.sh in git bash, this may take a few minutes.
 
-[![Playlist URL](input_images/thumbnail.png)](https://youtube.com/playlist?list=PLrdaCCBhU_hkEPpzhs5XtaUscJMB5h0cS)
+## Note: DALL-E-3 supports at least 1024x1024 image size.
 
-## DALL-E API can perform the following as of now -
+## Watch these for explanations:
+## https://www.youtube.com/watch?v=4d_M5y9Lowc&list=PLrdaCCBhU_hkEPpzhs5XtaUscJMB5h0cS&index=2
+## https://www.youtube.com/watch?v=6n7YKrnEyJM&list=PLrdaCCBhU_hkEPpzhs5XtaUscJMB5h0cS&index=3
+## https://www.youtube.com/watch?v=lNScLU-8N1w&list=PLrdaCCBhU_hkEPpzhs5XtaUscJMB5h0cS&index=4
+
+## DALL-E API can perform the following  -
 
 1. Image generation by text prompts
 2. Image variations by passing an image
