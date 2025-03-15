@@ -50,7 +50,7 @@ def page3():
             st.image(mask_image, caption="Uploaded Mask", use_container_width=True)
 
             # Remove background from mask using rembg
-            background_removed_mask_data = remove(mask_image)  # Can return bytes, PIL Image, or ndarray
+            background_removed_mask_data = remove(mask_image)  
             background_removed_mask_bytes = ensure_bytes(background_removed_mask_data)  # Ensure it's bytes
             background_removed_mask = Image.open(BytesIO(background_removed_mask_bytes))  # Convert to PIL Image
 
@@ -73,7 +73,7 @@ def page3():
                 image=img_byte_array,
                 mask=mask_byte_array,
                 prompt=prompt,
-                model="dall-e-2",  # Use "dall-e-3" for better quality
+                model="dall-e-2",  
                 n=num_images,
                 size=size
             )

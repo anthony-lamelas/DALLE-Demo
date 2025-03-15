@@ -14,18 +14,18 @@ def page1():
         submit_button = st.form_submit_button("Generate")
 
     if submit_button and prompt:
-        # Initialize OpenAI client (ensure your credentials are configured)
+        # Initialize OpenAI client 
         client = openai.OpenAI()
         
         try:
             response = client.images.generate(
-                model="dall-e-2",  # or "dall-e-3" for higher quality
+                model="dall-e-2",  
                 prompt=prompt,
                 n=num_images,
                 size=size
             )
             
-            # Display each generated image
+            # Display each image
             for i, image in enumerate(response.data):
                 image_url = image.url
                 if image_url is not None:

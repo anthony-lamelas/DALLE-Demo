@@ -20,13 +20,13 @@ def page2():
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded image", use_container_width=True)
 
-            # Resize the image correctly
+            # Resize the image 
             width, height = get_width_height(size)
-            image = resize_image(image, width, height)  # Now returns a PIL image
+            image = resize_image(image, width, height)  
 
             # Convert resized image to bytes
             img_byte_array = BytesIO()
-            image.save(img_byte_array, format="PNG")  # Now this works!
+            image.save(img_byte_array, format="PNG")  
             img_byte_array = img_byte_array.getvalue()
 
             # Initialize OpenAI client
@@ -35,7 +35,7 @@ def page2():
             # Generate variations
             response = client.images.create_variation(
                 image=img_byte_array,
-                model="dall-e-2",  # Use "dall-e-3" for higher quality
+                model="dall-e-2",  
                 n=num_images,
                 size=size
             )

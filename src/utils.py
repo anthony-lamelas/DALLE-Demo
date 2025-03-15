@@ -2,7 +2,7 @@ from io import BytesIO
 from PIL import Image
 from typing import Union, List
 
-ImageLike = Union[Image.Image]  # Allow all PIL images
+ImageLike = Union[Image.Image]  
 
 def resize_image(image: ImageLike, width: int, height: int) -> ImageLike:
     """Resize an image to the given width and height.
@@ -29,5 +29,4 @@ def get_width_height(size: str) -> List:
         List: returns a list of interger as [width, height] extracted from the 
         given size
     """
-    # size = '512x512'
-    return [int(val) for val in size.split("x")] # [512, 512]
+    return [int(val) for val in size.split("x")] 
