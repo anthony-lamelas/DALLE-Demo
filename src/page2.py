@@ -10,7 +10,6 @@ def page2():
 
     with st.form(key="form"):
         uploaded_file = st.file_uploader("Choose an image file", type=["png", "jpg"])
-        size = st.selectbox("Select image size", ("256x256", "512x512", "1024x1024"))
         num_images = st.selectbox("Select number of images to generate", (1, 2, 3, 4))
         submit_button = st.form_submit_button("Generate")
 
@@ -35,9 +34,9 @@ def page2():
             # Generate variations
             response = client.images.create_variation(
                 image=img_byte_array,
-                model="dall-e-2",  
+                model="dall-e-3",  
                 n=num_images,
-                size=size
+                size="1024x1024"
             )
 
             # Display generated images

@@ -30,7 +30,6 @@ def page3():
         uploaded_file = st.file_uploader("Choose an image file", type=["png", "jpg"])
         mask_file = st.file_uploader("Choose a mask file", type=["png", "jpg"])
         prompt = st.text_input("Enter a text prompt")
-        size = st.selectbox("Select image size", ("256x256", "512x512", "1024x1024"))
         num_images = st.selectbox("Select number of images to generate", (1, 2, 3, 4))
         submit_button = st.form_submit_button("Generate")
 
@@ -41,7 +40,7 @@ def page3():
             mask_image = Image.open(mask_file)
 
             # Resize images to match the selected size
-            width, height = get_width_height(size)
+            width, height = get_width_height("1024x1024")
             our_image = resize_image(our_image, width, height)
             mask_image = resize_image(mask_image, width, height)
 
@@ -73,9 +72,9 @@ def page3():
                 image=img_byte_array,
                 mask=mask_byte_array,
                 prompt=prompt,
-                model="dall-e-2",  
+                model="dall-e-3",  
                 n=num_images,
-                size=size
+                size="1024x1024"
             )
 
             # Display generated images

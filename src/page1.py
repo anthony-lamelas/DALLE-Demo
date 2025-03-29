@@ -9,7 +9,6 @@ def page1():
     # Create a form to input the prompt, image size, and number of images
     with st.form(key="image_form"):
         prompt = st.text_input("Enter text prompt for image generation", placeholder="photorealistic image of Richard Feynman")
-        size = st.selectbox("Select image size", ("256x256", "512x512", "1024x1024"))
         num_images = st.selectbox("Select number of images to generate", (1, 2, 3, 4))
         submit_button = st.form_submit_button("Generate")
 
@@ -19,10 +18,10 @@ def page1():
         
         try:
             response = client.images.generate(
-                model="dall-e-2",  
+                model="dall-e-3",  
                 prompt=prompt,
                 n=num_images,
-                size=size
+                size="1024x1024"
             )
             
             # Display each image
