@@ -3,7 +3,6 @@ import openai
 from PIL import Image
 from io import BytesIO
 from src.utils import get_width_height, resize_image
-from rembg import remove
 import numpy as np
 
 def ensure_bytes(image_data):

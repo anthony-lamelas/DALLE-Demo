@@ -1,6 +1,7 @@
 from io import BytesIO
 from PIL import Image
 from typing import Union, List
+import requests
 
 ImageLike = Union[Image.Image]  
 
@@ -30,3 +31,4 @@ def get_width_height(size: str) -> List:
         given size
     """
     return [int(val) for val in size.split("x")] 
+

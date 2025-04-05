@@ -13,7 +13,8 @@ def page4():
             placeholder="A cyberpunk detective on the run in a neon-lit city...",
             height=200
         )
-        num_panels = st.selectbox("How many panels (images) do you want?", (2, 3, 4, 5))
+        num_panels = st.number_input("Enter the amount of panels you want to generate below:", min_value=1, step=1)
+
         submit_button = st.form_submit_button("Generate Panels")
 
     if submit_button and story_description:
@@ -27,8 +28,8 @@ def page4():
                 "Take the user's story and split it into multiple panel prompts for a manga or comic, "
                 "each describing a distinct scene in detail, under 1000 characters each. "
                 "Return them as a numbered list, for example:\n"
-                "Panel 1: <prompt text>\n"
-                "Panel 2: <prompt text>\n"
+                "Panel 1: In colored ghibli manga theme generate the following: <prompt text>\n"
+                "Panel 2: In colored ghibli manga theme generate the following: <prompt text>\n"
                 "..."
             )
             user_msg = f"Break this story into {num_panels} separate prompts:\n\n{story_description}"

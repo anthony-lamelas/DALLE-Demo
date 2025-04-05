@@ -6,3 +6,7 @@ openai
 streamlit
 rembg
 onnxruntime
+pillow
+torch
+transformers
+requests

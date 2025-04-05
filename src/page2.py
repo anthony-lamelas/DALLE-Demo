@@ -19,10 +19,6 @@ def page2():
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded image", use_container_width=True)
 
-            # Resize the image 
-            width, height = get_width_height(size)
-            image = resize_image(image, width, height)  
-
             # Convert resized image to bytes
             img_byte_array = BytesIO()
             image.save(img_byte_array, format="PNG")  

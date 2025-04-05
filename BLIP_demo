@@ -1,0 +1,21 @@
+# import torch
+# from PIL import Image
+# from transformers import BlipProcessor, BlipForConditionalGeneration
+
+# # 1. Load the pre-trained BLIP model + processor from Salesforce
+# processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+# model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+
+# # 2. Load and prepare your image (a local file in this example)
+# image = Image.open("your_image.png").convert("RGB")
+
+# # 3. Preprocess the image for BLIP
+# inputs = processor(image, return_tensors="pt")
+
+# # 4. Generate a caption
+# with torch.no_grad():
+#     output_ids = model.generate(**inputs)
+
+# # 5. Decode the generated tokens into text
+# caption = processor.decode(output_ids[0], skip_special_tokens=True)
+# print("Caption:", caption)
